@@ -53,5 +53,24 @@ public class UserTest {
 		
 	}
 	
+	@Test(priority=3,dependsOnMethods={"TestCreateUser"})
+	void updateUserByName()
+	{
+		List<UserPojo> userlist = new ArrayList<>();
+		userlist.add(userpayload);
+		Response res = UserEndpoints.UpdateUser(this.userpayload.getUsername(),userlist);
+		res.then().log().all();
+		Assert.assertEquals(res.getStatusCode(), 200);
+	}
+	
+	@Test(priority=4)
+	void DeleteUserByName()
+	{
+		Response response = UserEndpoints.DeleteUser(this.userpayload.getUsername());
+		response.then().log().all();
+		response.then().log().headers();
+		Assert.assertEquals(response.getStatusCode(), 200);
+		
+	}
 
 }
