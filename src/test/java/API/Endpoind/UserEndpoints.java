@@ -31,7 +31,7 @@ public class UserEndpoints {
 		return response;
 	}
 	
-	public static Response UpdateUser(String Username, UserPojo payload)
+	public static Response UpdateUser(String Username, List<UserPojo> payload)
 	{
 		Response response = given()
 				.contentType(ContentType.JSON)
@@ -43,7 +43,7 @@ public class UserEndpoints {
 		return response;
 	}
 	
-	public static Response DeletUser(String Username)
+	public static Response DeleteUser(String Username)
 	{
 		Response response = given()
 				.pathParam("username",Username)
